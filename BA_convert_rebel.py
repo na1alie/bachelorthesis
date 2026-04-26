@@ -1,9 +1,9 @@
 import json
 import os
 
-input_dir    = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+input_dir    = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "non_orig")
 output_dir   = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "re_data")
-RELATIONS_TSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "rebel", "data", "relations_count.tsv")
+RELATIONS_JSON = os.path.join(os.path.dirname(os.path.abspath(__file__)), "embed_relations", "relations", "220_nonorig_relations.json")
 
 SPLITS = {
     "en_train.jsonl": "rebel_train.jsonl",
@@ -12,14 +12,10 @@ SPLITS = {
 }
 
 
-def load_allowed_relations(tsv_path):
-    allowed = set()
-    with open(tsv_path, encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if line:
-                allowed.add(line.split("\t")[0])
-    return allowed
+def load_allowed_relations(json_path):
+    with open(json_path, encoding="utf-8") as f:
+        data = json.load(f)
+    return {entry["predicate_label"] for entry in data if entry.get("predicate_label")}
 
 
 def convert_split(input_path, output_path, allowed_relations):
@@ -52,12 +48,15 @@ def convert_split(input_path, output_path, allowed_relations):
             for i, t in enumerate(raw_triples):
                 if (len(t) == 3
                         and t[1] in allowed_relations
-                        and (i >= len(statuses) or statuses[i] == "title")):
-                    pid = wikidata_ids[i][1] if i < len(wikidata_ids) and len(wikidata_ids[i]) > 1 else ""
+                        and i < len(statuses) and statuses[i] == "title"):
+                    ids = wikidata_ids[i] if i < len(wikidata_ids) else []
                     triples.append({
+                        "triple_index":    i,
+                        "subject_id":      ids[0] if len(ids) > 0 else "",
                         "subject_label":   t[0],
-                        "predicate_id":    pid,
+                        "predicate_id":    ids[1] if len(ids) > 1 else "",
                         "predicate_label": t[1],
+                        "object_id":       ids[2] if len(ids) > 2 else "",
                         "object_label":    t[2],
                     })
 
@@ -66,7 +65,9 @@ def convert_split(input_path, output_path, allowed_relations):
                 continue
 
             uri = record.get("uri", "")
-            entity = uri.split("-")[0] if "-" in uri else uri
+            qid = uri.split("-")[0] if "-" in uri else uri
+            title = record.get("title", "").replace(" ", "_")
+            entity = f"{qid}_{title}" if title else qid
 
             fout.write(json.dumps({
                 "category": "rebel",
@@ -82,8 +83,8 @@ def convert_split(input_path, output_path, allowed_relations):
 
 
 def main():
-    allowed_relations = load_allowed_relations(RELATIONS_TSV)
-    print(f"Loaded {len(allowed_relations)} allowed relations from relations_count.tsv\n")
+    allowed_relations = load_allowed_relations(RELATIONS_JSON)
+    print(f"Loaded {len(allowed_relations)} allowed relations from 220_nonorig_relations.json\n")
 
     os.makedirs(output_dir, exist_ok=True)
 
