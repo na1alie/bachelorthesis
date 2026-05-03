@@ -10,6 +10,7 @@ splits = ["train", "val", "test"]
 
 #collect relations and pid from non orig files in descendent order, also save top 220 relations
 def main():
+    os.makedirs(os.path.dirname(output), exist_ok=True)
     counts: Counter = Counter()
     label_to_id: dict[str, str] = {}
 
