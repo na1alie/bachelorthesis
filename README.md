@@ -47,7 +47,11 @@ python BG_build_instructions.py
 ```
 Outputs: `dataset-instruct/{train,valid,test}.jsonl`
 
-### 7. Fine-tune
+### 7. Downsample to 20K
 ```bash
-python finetune.py   -> in progress
+python finetuning/downsample.py
 ```
+Outputs: `dataset-instruct-20k/{train,valid,test}.jsonl` (16K train / 2K valid / 2K test)
+
+### 8. Fine-tune
+ in progress
