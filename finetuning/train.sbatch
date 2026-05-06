@@ -10,5 +10,4 @@ VENV_PATH="$PROJECT_DIR/venv_cluster/bin/activate"
 module load cuda/12.6.3
 
 cd "$PROJECT_DIR"
-source "$VENV_PATH"
-python finetuning/finetune.py
+source "$VENV_PATH" && python finetuning/finetune.py
