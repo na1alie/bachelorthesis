@@ -3,13 +3,9 @@ import os
 import json
 import logging
 from datasets import load_dataset
-from transformers import (
-    AutoModelForCausalLM,
-    AutoTokenizer,
-    TrainingArguments,
-)
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import LoraConfig
-from trl import SFTTrainer
+from trl import SFTTrainer, SFTConfig
 
 
 # =====================================================
@@ -86,8 +82,8 @@ logging.info("Loading dataset-instruct/train.jsonl and valid.jsonl")
 dataset = load_dataset(
     "json",
     data_files={
-        "train": "dataset-instruct/train.jsonl",
-        "valid": "dataset-instruct/valid.jsonl"
+        "train": "dataset-instruct-20k/train.jsonl",
+        "valid": "dataset-instruct-20k/valid.jsonl"
     }
 )
 
@@ -114,7 +110,7 @@ logging.info("Formatting complete.")
 # =====================================================
 # 6. TrainingArguments
 # =====================================================
-training_args = TrainingArguments(
+training_args = SFTConfig(
     output_dir=OUTPUT_DIR,
     num_train_epochs=3,
     per_device_train_batch_size=8,
@@ -126,18 +122,17 @@ training_args = TrainingArguments(
     max_grad_norm=0.3,
     warmup_ratio=0.03,
     lr_scheduler_type="cosine",
-
-    # ✨ Add validation
-    evaluation_strategy="epoch",
+    eval_strategy="epoch",
     save_strategy="epoch",
     load_best_model_at_end=True,
     metric_for_best_model="eval_loss",
     greater_is_better=False,
-
-    report_to="none",   # Slurm 不需要 WandB/TensorBoard
+    report_to="none",
+    dataset_text_field="text",
+    max_length=MAX_SEQ_LENGTH,
 )
 
-logging.info("TrainingArguments initialized.")
+logging.info("SFTConfig initialized.")
 
 
 # =====================================================
@@ -151,9 +146,7 @@ trainer = SFTTrainer(
     train_dataset=dataset["train"],
     eval_dataset=dataset["valid"],
     peft_config=peft_config,
-    tokenizer=tokenizer,
-    dataset_text_field="text",
-    max_seq_length=MAX_SEQ_LENGTH,
+    processing_class=tokenizer,
 )
 
 logging.info("Trainer created, starting training...")
