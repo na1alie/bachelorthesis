@@ -1,22 +1,24 @@
 import json
 import os
+import re
 from collections import Counter
 
 data_dir   = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "non_orig")
 output     = os.path.join(os.path.dirname(os.path.abspath(__file__)), "relations", "nonorig_relations.json")
 output_220 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "relations", "220_nonorig_relations.json")
+splits     = ["train", "val", "test"]
 
-splits = ["train", "val", "test"]
 
-#collect relations and pid from non orig files in descendent order, also save top 220 relations
+def parse_triples(answer: str) -> list[tuple[str, str, str]]:
+    return re.findall(r"<sub>\s*(.*?)\s*<rel>\s*(.*?)\s*<obj>\s*(.*?)\s*<et>", answer)
+
+
 def main():
-    os.makedirs(os.path.dirname(output), exist_ok=True)
     counts: Counter = Counter()
     label_to_id: dict[str, str] = {}
 
     for split in splits:
         path = os.path.join(data_dir, f"en_{split}.jsonl")
-        
         print(f"Scanning en_{split}.jsonl ...")
         with open(path, encoding="utf-8") as f:
             for line in f:
@@ -28,27 +30,27 @@ def main():
                 except json.JSONDecodeError:
                     continue
 
-                meta    = record.get("meta_obj", {})
-                triples = meta.get("substring_triples", [])
-                wikiids = meta.get("non_formatted_wikidata_id_output", [])
+                answer = record.get("output", [{}])[0].get("answer")
+                if not answer:
+                    continue
 
-                for i, triple in enumerate(triples):
-                    if len(triple) != 3:
+                wikiids = record.get("meta_obj", {}).get("non_formatted_wikidata_id_output", [])
+
+                for i, (_, rel, _) in enumerate(parse_triples(answer)):
+                    if not rel:
                         continue
-                    label = triple[1]
-                    if not label:
-                        continue
-                    counts[label] += 1
-                    if label not in label_to_id and i < len(wikiids) and len(wikiids[i]) > 1:
-                        label_to_id[label] = wikiids[i][1]
+                    counts[rel] += 1
+                    if rel not in label_to_id and i < len(wikiids) and len(wikiids[i]) > 1:
+                        label_to_id[rel] = wikiids[i][1]
 
         print(f"  {len(counts):,} unique relations so far")
 
     result = [
-        {"predicate_label": label, "predicate_id": label_to_id.get(label, ""), "count": count}
+        {"label": label, "id": label_to_id.get(label, ""), "count": count}
         for label, count in counts.most_common()
     ]
 
+    os.makedirs(os.path.dirname(output), exist_ok=True)
     with open(output, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
     print(f"Saved {len(result):,} relations to {output}")

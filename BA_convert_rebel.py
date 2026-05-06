@@ -1,5 +1,6 @@
 import json
 import os
+import re
 
 input_dir    = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "non_orig")
 output_dir   = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "re_data")
@@ -10,6 +11,10 @@ SPLITS = {
     "en_val.jsonl":   "rebel_val.jsonl",
     "en_test.jsonl":  "rebel_test.jsonl",
 }
+
+
+def parse_answer(answer: str) -> list[tuple[str, str, str]]:
+    return re.findall(r"<sub>\s*(.*?)\s*<rel>\s*(.*?)\s*<obj>\s*(.*?)\s*<et>", answer)
 
 
 def load_allowed_relations(json_path):
@@ -35,29 +40,27 @@ def convert_split(input_path, output_path, allowed_relations):
             except json.JSONDecodeError:
                 continue
 
-            if record.get("output", [{}])[0].get("answer") is None:
+            answer = record.get("output", [{}])[0].get("answer")
+            if answer is None:
                 skipped_no_match += 1
                 continue
 
             meta         = record.get("meta_obj", {})
-            raw_triples  = meta.get("substring_triples", [])
-            statuses     = record.get("output", [{}])[0].get("non_formatted_triples_match_status", [])
             wikidata_ids = meta.get("non_formatted_wikidata_id_output", [])
+            parsed       = parse_answer(answer)
 
             triples = []
-            for i, t in enumerate(raw_triples):
-                if (len(t) == 3
-                        and t[1] in allowed_relations
-                        and i < len(statuses) and statuses[i] == "title"):
+            for i, (subj, rel, obj) in enumerate(parsed):
+                if rel in allowed_relations:
                     ids = wikidata_ids[i] if i < len(wikidata_ids) else []
                     triples.append({
                         "triple_index":    i,
                         "subject_id":      ids[0] if len(ids) > 0 else "",
-                        "subject_label":   t[0],
+                        "subject_label":   subj,
                         "predicate_id":    ids[1] if len(ids) > 1 else "",
-                        "predicate_label": t[1],
+                        "predicate_label": rel,
                         "object_id":       ids[2] if len(ids) > 2 else "",
-                        "object_label":    t[2],
+                        "object_label":    obj,
                     })
 
             if not triples:
