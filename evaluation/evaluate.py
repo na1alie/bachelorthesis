@@ -7,7 +7,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 MODEL_ID  = "Qwen/Qwen2.5-1.5B-Instruct"
 TEST_FILE = "dataset-instruct-20k/test.jsonl"
-N_SAMPLES = 1
+N_SAMPLES = 1000
 
 LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
