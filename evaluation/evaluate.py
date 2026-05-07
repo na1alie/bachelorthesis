@@ -1,11 +1,31 @@
 import json
+import logging
+import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
-MODEL_ID = "Qwen/Qwen2.5-1.5B-Instruct"
-TEST_FILE  = "dataset-instruct-20k/test.jsonl"
-N_SAMPLES  = 1000
+MODEL_ID  = "Qwen/Qwen2.5-1.5B-Instruct"
+TEST_FILE = "dataset-instruct-20k/test.jsonl"
+N_SAMPLES = 1
+
+LOG_DIR = "logs"
+os.makedirs(LOG_DIR, exist_ok=True)
+
+logging.basicConfig(
+    filename=os.path.join(LOG_DIR, "evaluate.log"),
+    filemode="w",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+logging.info("===== Evaluation started =====")
+logging.info(f"CUDA available: {torch.cuda.is_available()}")
+if torch.cuda.is_available():
+    logging.info(f"Current GPU: {torch.cuda.get_device_name(0)}")
+    logging.info(f"Device count: {torch.cuda.device_count()}")
+logging.info(f"Model: {MODEL_ID}")
+logging.info(f"Test file: {TEST_FILE}, n_samples: {N_SAMPLES}")
 
 
 #Parsing & Normalization (from experiment_README)
@@ -51,7 +71,7 @@ def evaluate_strict(predictions, gold_list):
 #get predictions with model
 
 def load_model():
-    print(f"Loading model: {MODEL_ID}")
+    logging.info(f"Loading model: {MODEL_ID}")
     tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
     model = AutoModelForCausalLM.from_pretrained(MODEL_ID, device_map="auto")
     if tokenizer.pad_token is None:
@@ -91,7 +111,7 @@ def run_inference(model, tokenizer, samples, max_new_tokens=256):
 ###################################
 
 def main():
-    print(f"Loading test data from {TEST_FILE} ({N_SAMPLES} samples)")
+    logging.info(f"Loading test data ({N_SAMPLES} samples)")
     with open(TEST_FILE) as f:
         samples = [json.loads(l) for l in f][:N_SAMPLES]
 
@@ -104,14 +124,15 @@ def main():
 
     model, tokenizer = load_model()
 
-    print(f"Running inference on {len(samples)} samples...")
+    logging.info(f"Running inference on {len(samples)} samples...")
     predictions = run_inference(model, tokenizer, samples)
 
     p, r, f1 = evaluate_strict(predictions, gold_list)
-    print(f"\nStrict Match:")
-    print(f"Precision: {p:.4f}")
-    print(f"Recall:    {r:.4f}")
-    print(f"F1:        {f1:.4f}")
+    logging.info("Strict Match:")
+    logging.info(f"Precision: {p:.4f}")
+    logging.info(f"Recall:    {r:.4f}")
+    logging.info(f"F1:        {f1:.4f}")
+    logging.info("===== Evaluation finished =====")
 
 
 if __name__ == "__main__":
