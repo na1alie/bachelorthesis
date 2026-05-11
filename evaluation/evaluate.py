@@ -51,13 +51,29 @@ def normalize_triple(s, r, o):
     return (normalize(s), normalize(r), normalize(o))
 
 ###############################
+#Evaluation of three evaluation types (from experiment_README)
+#comparison predictions and gold -> calculation recall, precision, f1 
 
-#comparison predictions and gold -> calculation recall, precision, f1 (from experiment_README)
+#Strict Match: A predicted triple `(s, r, o)` is correct only if all three elements exactly match the gold triple after normalization.
 def evaluate_strict(predictions, gold_list):
     tp, fp, fn = 0, 0, 0
     for pred_triples, gold_triples in zip(predictions, gold_list):
         pred_set = set(normalize_triple(*t) for t in pred_triples)
         gold_set = set(normalize_triple(*t) for t in gold_triples)
+        tp += len(pred_set & gold_set)
+        fp += len(pred_set - gold_set)
+        fn += len(gold_set - pred_set)
+    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+    recall    = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
+    return precision, recall, f1
+
+#Boundaries Match: Entity boundaries (subject and object spans) must be correct. Relation type is not required to match.
+def evaluate_boundaries(predictions, gold_list):
+    tp, fp, fn = 0, 0, 0
+    for pred_triples, gold_triples in zip(predictions, gold_list):
+        pred_set = set((normalize(s), normalize(o)) for s,r,o in pred_triples)
+        gold_set = set((normalize(s), normalize(o)) for s,r,o in gold_triples)
         tp += len(pred_set & gold_set)
         fp += len(pred_set - gold_set)
         fn += len(gold_set - pred_set)
@@ -127,8 +143,15 @@ def main():
     logging.info(f"Running inference on {len(samples)} samples...")
     predictions = run_inference(model, tokenizer, samples)
 
+    #calcutate precision, recall and f1 with all three evaluation techniques
     p, r, f1 = evaluate_strict(predictions, gold_list)
     logging.info("Strict Match:")
+    logging.info(f"Precision: {p:.4f}")
+    logging.info(f"Recall:    {r:.4f}")
+    logging.info(f"F1:        {f1:.4f}")
+
+    p, r, f1 = evaluate_boundaries(predictions, gold_list)
+    logging.info("Boundaries Match:")
     logging.info(f"Precision: {p:.4f}")
     logging.info(f"Recall:    {r:.4f}")
     logging.info(f"F1:        {f1:.4f}")
