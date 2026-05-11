@@ -68,12 +68,13 @@ def evaluate_strict(predictions, gold_list):
     f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
     return precision, recall, f1
 
+
 #Boundaries Match: Entity boundaries (subject and object spans) must be correct. Relation type is not required to match.
 def evaluate_boundaries(predictions, gold_list):
     tp, fp, fn = 0, 0, 0
     for pred_triples, gold_triples in zip(predictions, gold_list):
-        pred_set = set((normalize(s), normalize(o)) for s,r,o in pred_triples)
-        gold_set = set((normalize(s), normalize(o)) for s,r,o in gold_triples)
+        pred_set = set((normalize(s), normalize(o)) for s,_,o in pred_triples)
+        gold_set = set((normalize(s), normalize(o)) for s,_,o in gold_triples)
         tp += len(pred_set & gold_set)
         fp += len(pred_set - gold_set)
         fn += len(gold_set - pred_set)
@@ -81,6 +82,30 @@ def evaluate_boundaries(predictions, gold_list):
     recall    = tp / (tp + fn) if (tp + fn) > 0 else 0.0
     f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
     return precision, recall, f1
+
+
+#Partial Match:Subject and object only need to partially match the gold spans (substring match).
+def evaluate_partial(predictions, gold_list):
+    tp, fp, fn = 0, 0, 0
+    for pred_triples, gold_triples in zip(predictions, gold_list):
+        matched_gold = set()
+        for ps, pr, po in pred_triples:
+            matched = False
+            for gi, (gs, gr, go) in enumerate(gold_triples):
+                if gi not in matched_gold and normalize(pr) == normalize(gr):
+                    if (normalize(ps) in normalize(gs) or normalize(gs) in normalize(ps)) and (normalize(po) in normalize(go) or normalize(go) in normalize(po)):
+                        tp += 1
+                        matched_gold.add(gi)
+                        matched = True
+                        break
+            if not matched:
+                fp += 1
+        fn += len(gold_triples) - len(matched_gold)
+    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+    recall    = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
+    return precision, recall, f1
+
 
 ############################
 
@@ -152,6 +177,12 @@ def main():
 
     p, r, f1 = evaluate_boundaries(predictions, gold_list)
     logging.info("Boundaries Match:")
+    logging.info(f"Precision: {p:.4f}")
+    logging.info(f"Recall:    {r:.4f}")
+    logging.info(f"F1:        {f1:.4f}")
+
+    p, r, f1 = evaluate_partial(predictions, gold_list)
+    logging.info("Partial Match:")
     logging.info(f"Precision: {p:.4f}")
     logging.info(f"Recall:    {r:.4f}")
     logging.info(f"F1:        {f1:.4f}")
