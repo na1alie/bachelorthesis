@@ -54,4 +54,17 @@ python finetuning/downsample.py
 Outputs: `dataset-instruct-20k/{train,valid,test}.jsonl` (16K train / 2K valid / 2K test)
 
 ### 8. Fine-tune
- in progress
+```bash
+# on cluster:
+sbatch finetuning/train.sbatch
+```
+
+### 9. Evaluate
+get results for three evaluation types: strict, boundaries and partial
+```bash
+# base model:
+sbatch evaluation/evaluate.sbatch
+
+# fine-tuned model:
+sbatch evaluation/evaluate_finetuned.sbatch
+```
