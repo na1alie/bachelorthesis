@@ -12,7 +12,7 @@ module load cuda/12.6.3
 cd "$PROJECT_DIR"
 source "$VENV_PATH"
 
-python finetuning/finetune.py
-python evaluation/evaluate.py
-python evaluation/evaluate_finetuned.py
+python finetuning/finetune.py --model google/gemma-3-1b-it
+python evaluation/evaluate.py --model google/gemma-3-1b-it
+python evaluation/evaluate_finetuned.py --base_model google/gemma-3-1b-it
 
