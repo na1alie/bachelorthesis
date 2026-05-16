@@ -1,3 +1,4 @@
+import argparse
 import torch
 import os
 import json
@@ -9,13 +10,26 @@ from trl import SFTTrainer, SFTConfig
 
 
 # =====================================================
-# 0. Logging Setup (for Slurm)
+# 0. Arguments & Paths
+# =====================================================
+parser = argparse.ArgumentParser()
+parser.add_argument("--model", required=True, help="HuggingFace model ID")
+args = parser.parse_args()
+
+MODEL_ID   = args.model
+MODEL_NAME = MODEL_ID.split("/")[-1]
+OUTPUT_DIR = f"./{MODEL_NAME}-text2kg-qlora"
+MAX_SEQ_LENGTH = 1024
+
+
+# =====================================================
+# 1. Logging Setup (for Slurm)
 # =====================================================
 LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 
 logging.basicConfig(
-    filename=os.path.join(LOG_DIR, "train.log"),
+    filename=os.path.join(LOG_DIR, f"train_{MODEL_NAME}.log"),
     filemode="w",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
@@ -26,16 +40,6 @@ logging.info(f"CUDA available: {torch.cuda.is_available()}")
 if torch.cuda.is_available():
     logging.info(f"Current GPU: {torch.cuda.get_device_name(0)}")
     logging.info(f"Device count: {torch.cuda.device_count()}")
-
-
-# =====================================================
-# 1. Model & Paths
-# =====================================================
-# MODEL_ID = "Qwen/Qwen2.5-1.5B-Instruct"
-# OUTPUT_DIR = "./qwen2.5-text2kg-qlora"
-MODEL_ID = "google/gemma-3-1b-it"
-OUTPUT_DIR = "./gemma-text2kg-qlora"
-MAX_SEQ_LENGTH = 1024
 
 logging.info(f"Loading model: {MODEL_ID}")
 
