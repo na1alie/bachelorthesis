@@ -31,8 +31,10 @@ if torch.cuda.is_available():
 # =====================================================
 # 1. Model & Paths
 # =====================================================
-MODEL_ID = "Qwen/Qwen2.5-1.5B-Instruct"
-OUTPUT_DIR = "./qwen2.5-text2kg-qlora"
+# MODEL_ID = "Qwen/Qwen2.5-1.5B-Instruct"
+# OUTPUT_DIR = "./qwen2.5-text2kg-qlora"
+MODEL_ID = "google/gemma-3-1b-it"
+OUTPUT_DIR = "./gemma-text2kg-qlora"
 MAX_SEQ_LENGTH = 1024
 
 logging.info(f"Loading model: {MODEL_ID}")

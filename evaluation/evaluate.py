@@ -5,7 +5,8 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
-MODEL_ID  = "Qwen/Qwen2.5-1.5B-Instruct"
+# MODEL_ID = "Qwen/Qwen2.5-1.5B-Instruct"
+MODEL_ID  = "google/gemma-3-1b-it"
 TEST_FILE = "dataset-instruct-20k/test.jsonl"
 N_SAMPLES = 1000
 
@@ -13,7 +14,7 @@ LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 
 logging.basicConfig(
-    filename=os.path.join(LOG_DIR, "evaluate.log"),
+    filename=os.path.join(LOG_DIR, "evaluate_base_gemma.log"),
     filemode="w",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
