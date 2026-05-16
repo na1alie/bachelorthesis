@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -J train_all
-#SBATCH -w gpu-nvidia-h100
+#SBATCH -w gpu-nvidia-h200-1
 #SBATCH --gres=gpu:nvidia:1
 #SBATCH -t 24:00:00
 
@@ -26,4 +26,3 @@ python evaluation/evaluate_finetuned.py --base_model google/gemma-3-1b-it
 python finetuning/finetune.py --model meta-llama/Llama-3.2-1B-Instruct
 python evaluation/evaluate.py --model meta-llama/Llama-3.2-1B-Instruct
 python evaluation/evaluate_finetuned.py --base_model meta-llama/Llama-3.2-1B-Instruct
-
