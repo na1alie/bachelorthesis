@@ -14,10 +14,12 @@ from trl import SFTTrainer, SFTConfig
 # =====================================================
 parser = argparse.ArgumentParser()
 parser.add_argument("--model", required=True, help="HuggingFace model ID")
+parser.add_argument("--run", default="", help="Optional run name suffix for log file")
 args = parser.parse_args()
 
 MODEL_ID   = args.model
 MODEL_NAME = MODEL_ID.split("/")[-1]
+RUN_SUFFIX = f"_{args.run}" if args.run else ""
 OUTPUT_DIR = f"./{MODEL_NAME}-text2kg-qlora"
 MAX_SEQ_LENGTH = 1024
 
@@ -29,7 +31,7 @@ LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 
 logging.basicConfig(
-    filename=os.path.join(LOG_DIR, f"train_{MODEL_NAME}.log"),
+    filename=os.path.join(LOG_DIR, f"train_{MODEL_NAME}{RUN_SUFFIX}.log"),
     filemode="w",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"

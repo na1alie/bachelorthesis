@@ -8,11 +8,13 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--base_model", required=True, help="HuggingFace base model ID")
+parser.add_argument("--run", default="", help="Optional run name suffix for log file")
 args = parser.parse_args()
 
 BASE_MODEL = args.base_model
 MODEL_NAME = BASE_MODEL.split("/")[-1]
 MODEL_ID   = f"{MODEL_NAME}-text2kg-qlora"
+RUN_SUFFIX = f"_{args.run}" if args.run else ""
 TEST_FILE  = "dataset-instruct-20k/test.jsonl"
 N_SAMPLES  = 1000
 
@@ -20,7 +22,7 @@ LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 
 logging.basicConfig(
-    filename=os.path.join(LOG_DIR, f"evaluate_finetuned_{MODEL_NAME}.log"),
+    filename=os.path.join(LOG_DIR, f"evaluate_finetuned_{MODEL_NAME}{RUN_SUFFIX}.log"),
     filemode="w",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
