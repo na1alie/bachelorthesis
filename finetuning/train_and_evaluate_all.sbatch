@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -J 2_train_all
-#SBATCH -w gpu-nvidia-h100
+#SBATCH -w gpu-nvidia-h200-1
 #SBATCH --gres=gpu:nvidia:1
 #SBATCH -t 24:00:00
 
