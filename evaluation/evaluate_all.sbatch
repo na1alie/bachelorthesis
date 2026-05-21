@@ -14,8 +14,9 @@ RUN=run1
 
 source "$VENV_PATH"
 
-#Qwen
-python evaluation/run_inference.py --model Qwen/Qwen2.5-1.5B-Instruct --run $RUN
-python evaluation/evaluate.py --predictions predictions/Qwen2.5-1.5B-Instruct_base_${RUN}.jsonl
-python evaluation/run_inference.py --model Qwen/Qwen2.5-1.5B-Instruct --adapter Qwen2.5-1.5B-Instruct-text2kg-qlora --run $RUN
-python evaluation/evaluate.py --predictions predictions/Qwen2.5-1.5B-Instruct_finetuned_${RUN}.jsonl
+#Gemma
+python evaluation/run_inference.py --model google/gemma-3-1b-it --run $RUN
+python evaluation/evaluate.py --predictions predictions/gemma-3-1b-it_base_${RUN}.jsonl
+python evaluation/run_inference.py --model google/gemma-3-1b-it --adapter gemma-3-1b-it-text2kg-qlora --run $RUN
+python evaluation/evaluate.py --predictions predictions/gemma-3-1b-it_finetuned_${RUN}.jsonl
+
