@@ -21,12 +21,13 @@ DATASET_DIRS = {
     "tum_full":    "data_tum/dataset-instruct-20k-full",
     "tum_p99":     "data_tum/dataset-instruct-20k-p99",
     "tum_p99_new": "data_tum/dataset-instruct-large-p99_new",
+    "tum_e3":      "data_tum/dataset-instruct-20k-e3",
     "wikinre":     "data_wikinre/dataset-instruct-20k",
 }
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model",   required=True, help="HuggingFace model ID")
-parser.add_argument("--dataset", choices=["rebel", "rebel-full", "lagrange", "tekgen", "tum_full", "tum_p99", "tum_p99_new", "wikinre"], default="rebel")
+parser.add_argument("--dataset", choices=["rebel", "rebel-full", "lagrange", "tekgen", "tum_full", "tum_p99", "tum_p99_new", "tum_e3", "wikinre"], default="rebel")
 parser.add_argument("--run",     default="", help="Optional run name suffix for log file")
 parser.add_argument("--lr",      type=float, default=2e-4, help="Learning rate")
 parser.add_argument("--lora_r",  type=int,   default=16,   help="LoRA rank")
