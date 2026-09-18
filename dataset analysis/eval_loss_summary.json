@@ -1,0 +1,353 @@
+{
+  "Llama-3.2-1B-Instruct-rebel-qlora_run3": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.6532794833183289},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.6376413702964783},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.6434592604637146},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.6682331562042236},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.6970019340515137},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 0.7376288771629333},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 0.773971438407898},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 0.7959462404251099}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 0.6376413702964783}
+  },
+  "gemma-3-1b-it-rebel-qlora_run3": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.7861974239349365},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.7660843133926392},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.767850935459137},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.7987099885940552},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.8450222015380859},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 0.9152041077613831},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 0.9788771867752075},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 1.013016700744629}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 0.7660843133926392}
+  },
+  "Qwen2.5-1.5B-Instruct-rebel-qlora_run3": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.7058793902397156},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.6826093196868896},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.6855884790420532},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.7138877511024475},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.7536478638648987},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 0.8063305020332336},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 0.8589333891868591},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 0.8871799111366272}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 0.6826093196868896}
+  },
+  "Llama-3.2-1B-Instruct-rebel-full-qlora_run1": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.7886286377906799},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.7673934102058411},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.7733001112937927},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.7927946448326111},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.8243290781974792},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 0.8619139194488525},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 0.8965712785720825},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 0.9182733297348022}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 0.7673934102058411}
+  },
+  "gemma-3-1b-it-rebel-full-qlora_run1": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.9488181471824646},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.9195404052734375},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.9208202958106995},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.9499678015708923},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.9962506294250488},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 1.058165192604065},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 1.123656988143921},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 1.1574894189834595}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 0.9195404052734375}
+  },
+  "Qwen2.5-1.5B-Instruct-rebel-full-qlora_run1": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.8448359966278076},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.8224309682846069},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.822319746017456},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.8433904051780701},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.8848544955253601},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 0.936638355255127},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 0.9862989783287048},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 1.01521897315979}
+    ],
+    "best": {"step": 3000, "epoch": 3.0, "eval_loss": 0.822319746017456}
+  },
+  "Llama-3.2-1B-Instruct-lagrange-qlora_run2": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.7039244174957275},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.685011088848114},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.6869573593139648},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.6997004747390747},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.723569393157959},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 0.7499120831489563},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 0.7790301442146301},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 0.7960338592529297}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 0.685011088848114}
+  },
+  "gemma-3-1b-it-lagrange-qlora_run2": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.8268160820007324},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.8032941818237305},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.7994387149810791},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.8178420662879944},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.8489125370979309},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 0.8950157761573792},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 0.9411004781723022},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 0.9651488065719604}
+    ],
+    "best": {"step": 3000, "epoch": 3.0, "eval_loss": 0.7994387149810791}
+  },
+  "Qwen2.5-1.5B-Instruct-lagrange-qlora_run2": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.750652551651001},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.7295072078704834},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.7289928197860718},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.7431023120880127},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.7710970640182495},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 0.8070763945579529},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 0.8482328057289124},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 0.8726885914802551}
+    ],
+    "best": {"step": 3000, "epoch": 3.0, "eval_loss": 0.7289928197860718}
+  },
+  "Llama-3.2-1B-Instruct-tekgen-qlora_run1": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.8467545509338379},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.8257758617401123},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.8305997252464294},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.8539296984672546},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.8831105828285217},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 0.9259260296821594},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 0.9594171643257141},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 0.9802597761154175}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 0.8257758617401123}
+  },
+  "gemma-3-1b-it-tekgen-qlora_run1": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 1.0021934509277344},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.9731164574623108},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.9734511375427246},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.9992374181747437},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 1.0458825826644897},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 1.112366795539856},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 1.179525375366211},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 1.2127474546432495}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 0.9731164574623108}
+  },
+  "Qwen2.5-1.5B-Instruct-tekgen-qlora_run1": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.9036509990692139},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.8833372592926025},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.8874056935310364},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.906758189201355},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.9473507404327393},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 0.9972404837608337},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 1.0537378787994385},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 1.0815268754959106}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 0.8833372592926025}
+  },
+  "Llama-3.2-1B-Instruct-tum_p99-qlora_run1": {
+    "evals": [
+      {"step": 999, "epoch": 1.0, "eval_loss": 0.888090193271637},
+      {"step": 1998, "epoch": 2.0, "eval_loss": 0.8708706498146057},
+      {"step": 2997, "epoch": 3.0, "eval_loss": 0.8764764666557312},
+      {"step": 3996, "epoch": 4.0, "eval_loss": 0.9046748876571655},
+      {"step": 4995, "epoch": 5.0, "eval_loss": 0.944989800453186},
+      {"step": 5994, "epoch": 6.0, "eval_loss": 0.9953643679618835},
+      {"step": 6993, "epoch": 7.0, "eval_loss": 1.044334888458252},
+      {"step": 7992, "epoch": 8.0, "eval_loss": 1.0708377361297607}
+    ],
+    "best": {"step": 1998, "epoch": 2.0, "eval_loss": 0.8708706498146057}
+  },
+  "gemma-3-1b-it-tum_p99-qlora_run1": {
+    "evals": [
+      {"step": 999, "epoch": 1.0, "eval_loss": 1.0562433004379272},
+      {"step": 1998, "epoch": 2.0, "eval_loss": 1.025542974472046},
+      {"step": 2997, "epoch": 3.0, "eval_loss": 1.0306388139724731},
+      {"step": 3996, "epoch": 4.0, "eval_loss": 1.0620005130767822},
+      {"step": 4995, "epoch": 5.0, "eval_loss": 1.1120702028274536},
+      {"step": 5994, "epoch": 6.0, "eval_loss": 1.1949642896652222},
+      {"step": 6993, "epoch": 7.0, "eval_loss": 1.2756688594818115},
+      {"step": 7992, "epoch": 8.0, "eval_loss": 1.318862795829773}
+    ],
+    "best": {"step": 1998, "epoch": 2.0, "eval_loss": 1.025542974472046}
+  },
+  "Qwen2.5-1.5B-Instruct-tum_p99-qlora_run1": {
+    "evals": [
+      {"step": 999, "epoch": 1.0, "eval_loss": 0.9478753805160522},
+      {"step": 1998, "epoch": 2.0, "eval_loss": 0.9263675808906555},
+      {"step": 2997, "epoch": 3.0, "eval_loss": 0.930988609790802},
+      {"step": 3996, "epoch": 4.0, "eval_loss": 0.9616778492927551},
+      {"step": 4995, "epoch": 5.0, "eval_loss": 1.0146437883377075},
+      {"step": 5994, "epoch": 6.0, "eval_loss": 1.0850021839141846},
+      {"step": 6993, "epoch": 7.0, "eval_loss": 1.154087781906128},
+      {"step": 7992, "epoch": 8.0, "eval_loss": 1.193751573562622}
+    ],
+    "best": {"step": 1998, "epoch": 2.0, "eval_loss": 0.9263675808906555}
+  },
+  "Llama-3.2-1B-Instruct-tum_p99_new-qlora_run1": {
+    "evals": [
+      {"step": 8716, "epoch": 1.0, "eval_loss": 0.8300057649612427},
+      {"step": 17432, "epoch": 2.0, "eval_loss": 0.81919926404953},
+      {"step": 26148, "epoch": 3.0, "eval_loss": 0.8139011859893799},
+      {"step": 34864, "epoch": 4.0, "eval_loss": 0.8130221962928772},
+      {"step": 43580, "epoch": 5.0, "eval_loss": 0.8161678314208984},
+      {"step": 52296, "epoch": 6.0, "eval_loss": 0.823879063129425},
+      {"step": 61012, "epoch": 7.0, "eval_loss": 0.8341304659843445},
+      {"step": 69728, "epoch": 8.0, "eval_loss": 0.8418703675270081}
+    ],
+    "best": {"step": 34864, "epoch": 4.0, "eval_loss": 0.8130221962928772}
+  },
+  "gemma-3-1b-it-tum_p99_new-qlora_run1": {
+    "evals": [
+      {"step": 8716, "epoch": 1.0, "eval_loss": 0.9673312306404114},
+      {"step": 17432, "epoch": 2.0, "eval_loss": 0.9475075006484985},
+      {"step": 26148, "epoch": 3.0, "eval_loss": 0.9388868808746338},
+      {"step": 34864, "epoch": 4.0, "eval_loss": 0.9385753870010376},
+      {"step": 43580, "epoch": 5.0, "eval_loss": 0.9436625838279724},
+      {"step": 52296, "epoch": 6.0, "eval_loss": 0.9571707248687744},
+      {"step": 61012, "epoch": 7.0, "eval_loss": 0.9743058681488037},
+      {"step": 69728, "epoch": 8.0, "eval_loss": 0.9876176118850708}
+    ],
+    "best": {"step": 34864, "epoch": 4.0, "eval_loss": 0.9385753870010376}
+  },
+  "Qwen2.5-1.5B-Instruct-tum_p99_new-qlora_run1": {
+    "evals": [
+      {"step": 8716, "epoch": 1.0, "eval_loss": 0.8812695145606995},
+      {"step": 17432, "epoch": 2.0, "eval_loss": 0.8682472109794617},
+      {"step": 26148, "epoch": 3.0, "eval_loss": 0.8667479157447815},
+      {"step": 34864, "epoch": 4.0, "eval_loss": 0.8726839423179626},
+      {"step": 43580, "epoch": 5.0, "eval_loss": 0.8851708769798279},
+      {"step": 52296, "epoch": 6.0, "eval_loss": 0.9066100716590881},
+      {"step": 61012, "epoch": 7.0, "eval_loss": 0.9312430620193481},
+      {"step": 69728, "epoch": 8.0, "eval_loss": 0.9458447098731995}
+    ],
+    "best": {"step": 26148, "epoch": 3.0, "eval_loss": 0.8667479157447815}
+  },
+  "Llama-3.2-1B-Instruct-tum_p99-qlora_hparam_r32": {
+    "evals": [
+      {"step": 999, "epoch": 1.0, "eval_loss": 0.8858067393302917},
+      {"step": 1998, "epoch": 2.0, "eval_loss": 0.8738710880279541},
+      {"step": 2997, "epoch": 3.0, "eval_loss": 0.8934424519538879},
+      {"step": 3996, "epoch": 4.0, "eval_loss": 0.9404923319816589},
+      {"step": 4995, "epoch": 5.0, "eval_loss": 1.005246877670288},
+      {"step": 5994, "epoch": 6.0, "eval_loss": 1.079994559288025},
+      {"step": 6993, "epoch": 7.0, "eval_loss": 1.1570816040039062},
+      {"step": 7992, "epoch": 8.0, "eval_loss": 1.1994845867156982}
+    ],
+    "best": {"step": 1998, "epoch": 2.0, "eval_loss": 0.8738710880279541}
+  },
+  "gemma-3-1b-it-tum_p99-qlora_hparam_r32": {
+    "evals": [
+      {"step": 999, "epoch": 1.0, "eval_loss": 1.0479621887207031},
+      {"step": 1998, "epoch": 2.0, "eval_loss": 1.0272377729415894},
+      {"step": 2997, "epoch": 3.0, "eval_loss": 1.0461530685424805},
+      {"step": 3996, "epoch": 4.0, "eval_loss": 1.1066551208496094},
+      {"step": 4995, "epoch": 5.0, "eval_loss": 1.2147932052612305},
+      {"step": 5994, "epoch": 6.0, "eval_loss": 1.3595255613327026},
+      {"step": 6993, "epoch": 7.0, "eval_loss": 1.4749810695648193},
+      {"step": 7992, "epoch": 8.0, "eval_loss": 1.534749150276184}
+    ],
+    "best": {"step": 1998, "epoch": 2.0, "eval_loss": 1.0272377729415894}
+  },
+  "Qwen2.5-1.5B-Instruct-tum_p99-qlora_hparam_r32": {
+    "evals": [
+      {"step": 999, "epoch": 1.0, "eval_loss": 0.9473631978034973},
+      {"step": 1998, "epoch": 2.0, "eval_loss": 0.9276013374328613},
+      {"step": 2997, "epoch": 3.0, "eval_loss": 0.9464612007141113},
+      {"step": 3996, "epoch": 4.0, "eval_loss": 1.0058835744857788},
+      {"step": 4995, "epoch": 5.0, "eval_loss": 1.0919265747070312},
+      {"step": 5994, "epoch": 6.0, "eval_loss": 1.2044048309326172},
+      {"step": 6993, "epoch": 7.0, "eval_loss": 1.3044275045394897},
+      {"step": 7992, "epoch": 8.0, "eval_loss": 1.3617850542068481}
+    ],
+    "best": {"step": 1998, "epoch": 2.0, "eval_loss": 0.9276013374328613}
+  },
+  "Llama-3.2-1B-Instruct-wikinre-qlora_run1": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.5105388164520264},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.4983825981616974},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.5020291805267334},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.5157561898231506},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.5408709645271301},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 0.567756712436676},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 0.596964955329895},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 0.6129645705223083}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 0.4983825981616974}
+  },
+  "gemma-3-1b-it-wikinre-qlora_run1": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.624522864818573},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.60252845287323},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.6045752167701721},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.6242468357086182},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.6660922765731812},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 0.7201980948448181},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 0.7685539126396179},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 0.7965754866600037}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 0.60252845287323}
+  },
+  "Qwen2.5-1.5B-Instruct-wikinre-qlora_run1": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.5669089555740356},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.5502673387527466},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.5549426078796387},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.571694552898407},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.6050570607185364},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 0.6421342492103577},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 0.6838074922561646},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 0.7071230411529541}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 0.5502673387527466}
+  },
+  "Llama-3.2-1B-Instruct-tum_e3-qlora_run1": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.8772192597389221},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.8710676431655884},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.8882303237915039},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.916986346244812},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 0.9682738184928894},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 1.029420018196106},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 1.0768210887908936},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 1.1067744493484497}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 0.8710676431655884}
+  },
+  "gemma-3-1b-it-tum_e3-qlora_run1": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 1.0389772653579712},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 1.0231194496154785},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 1.0420480966567993},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 1.08109712600708},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 1.1506268978118896},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 1.2391372919082642},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 1.326680302619934},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 1.3755733966827393}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 1.0231194496154785}
+  },
+  "Qwen2.5-1.5B-Instruct-tum_e3-qlora_run1": {
+    "evals": [
+      {"step": 1000, "epoch": 1.0, "eval_loss": 0.9313044548034668},
+      {"step": 2000, "epoch": 2.0, "eval_loss": 0.9218267798423767},
+      {"step": 3000, "epoch": 3.0, "eval_loss": 0.9366528391838074},
+      {"step": 4000, "epoch": 4.0, "eval_loss": 0.9725133180618286},
+      {"step": 5000, "epoch": 5.0, "eval_loss": 1.036254644393921},
+      {"step": 6000, "epoch": 6.0, "eval_loss": 1.1125705242156982},
+      {"step": 7000, "epoch": 7.0, "eval_loss": 1.1901345252990723},
+      {"step": 8000, "epoch": 8.0, "eval_loss": 1.2319858074188232}
+    ],
+    "best": {"step": 2000, "epoch": 2.0, "eval_loss": 0.9218267798423767}
+  }
+}
